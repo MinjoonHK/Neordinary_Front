@@ -1,17 +1,8 @@
-// web/eslint.config.js
-import js from '@eslint/js';
-import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
-import prettierPlugin from 'eslint-plugin-prettier';
-import reactPlugin from 'eslint-plugin-react';
-import reactHooksPlugin from 'eslint-plugin-react-hooks';
-import simpleImportSort from 'eslint-plugin-simple-import-sort';
-import tseslint from 'typescript-eslint';
-
 export default tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    files: ['**/*.{js,jsx,ts,tsx}'],
+    files: ['src/**/*.{js,jsx,ts,tsx}'],
     ignores: ['dist', 'build', 'node_modules'],
     languageOptions: {
       ecmaVersion: 'latest',
@@ -37,12 +28,9 @@ export default tseslint.config(
     rules: {
       indent: 'off',
       '@typescript-eslint/indent': 'off',
-
       'prettier/prettier': 'error',
-
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
-
       'func-style': ['error', 'expression', { allowArrowFunctions: true }],
       'react/function-component-definition': [
         'error',
@@ -51,9 +39,7 @@ export default tseslint.config(
           unnamedComponents: 'arrow-function',
         },
       ],
-
       'react/no-array-index-key': 'error',
-
       'react/prop-types': 'off',
       'react/react-in-jsx-scope': 'off',
       'no-unused-vars': 'off',

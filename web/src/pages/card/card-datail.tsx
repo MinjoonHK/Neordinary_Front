@@ -66,7 +66,6 @@ const CardDetail = () => {
         ) : (
           <div className="bg-gray-40 h-full w-full" />
         )}
-
         <div className="pointer-events-none absolute inset-0 flex flex-col justify-between px-[2.4rem] py-[2.4rem]">
           <p className="h3 text-blue-60">#카테고리</p>
           <p className="h1 text-white">

@@ -7,6 +7,7 @@ import StepResult from '@pages/worry/components/step-result';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import { axiosClient } from '@/shared/apis/axios-client';
 import { PROFANITY_LIST } from '@/shared/constants/badwords';
 import { ROUTES } from '@/shared/routes/routes-config';
 import { getHeaderContent } from '@/shared/utils/get-header';
@@ -25,6 +26,10 @@ const requestAiResult = async (params: {
   description: string;
 }): Promise<AiResult> => {
   const { description } = params;
+  const { data: aiData } = await axiosClient.post('/issues', {
+    category: params.category,
+    content: params.description,
+  });
 
   return {
     title: '[Name]님을 위한\n위로와 극복 챌린지예요',

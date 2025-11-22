@@ -4,19 +4,26 @@ import ChallengePostit from '@pages/worry/components/challenge-postit';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { getHeaderContent } from '@/shared/utils/get-header';
+import { useQuery } from '@tanstack/react-query';
+import { axiosClient } from '@/shared/apis/axios-client';
 
 const RecordPage = () => {
   const location = useLocation();
   const state = location.state as { value?: string } | undefined;
   const value = state?.value ?? '';
-
   const navigate = useNavigate();
   const { pathname, search } = useLocation();
   const urlParams = new URLSearchParams(search);
-
   const handleBack = () => {
     navigate(-1);
   };
+
+  const { data: challengeCardDetailData } = useQuery({
+    queryKey: ['challengeCardDetailData', value],
+    queryFn: () =>
+      axiosClient.get('/challenges/21/issue').then((res) => res.data),
+    select: (data) => data.data,
+  });
 
   return (
     <div className={cn('flex h-svh flex-col', 'bg-worry-funnel')}>
@@ -29,21 +36,21 @@ const RecordPage = () => {
 
         <section className="w-full flex-col gap-[1.6rem]">
           <p className="b2 text-gray-90">
-            [Name]님을 위한
+            {challengeCardDetailData?.nickname}님을 위한
             <br />
             위로와 극복 챌린지예요
           </p>
 
           <div className="flex w-full justify-center pt-[0.8rem]">
             <div className="border-blue-20 flex w-full rounded-[16px] border bg-white px-[2.5rem] py-[2.8rem]">
-              <div className="flex-col gap-[2.4rem]">
-                <p className="b3 text-gray-80 whitespace-pre-line">dfsdf</p>
+              <div className="flex w-full flex-col gap-[2.4rem]">
+                <p className="b3 text-gray-80 whitespace-pre-line">
+                  {challengeCardDetailData?.comfortContent}
+                </p>
 
                 <ChallengePostit
-                  title="와작와작 과자먹기"
-                  body={
-                    '나만을 위한 작은 보상 타임이에요.\n오늘 하루 수고한 나에게 과자를 선물해 보세요.'
-                  }
+                  title={challengeCardDetailData?.challengeTitle}
+                  body={challengeCardDetailData?.challengeContent}
                 />
               </div>
             </div>

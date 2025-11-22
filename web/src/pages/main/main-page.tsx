@@ -6,17 +6,19 @@ import Button from '@/shared/components/button/button';
 import { cn } from '@/shared/libs/cn';
 import { useQuery } from '@tanstack/react-query';
 import { axiosClient } from '@/shared/apis/axios-client';
+import { ChallengeListType } from '@/shared/types/challenge-list-type';
 
 const Main = () => {
   const [activeCategory, setActiveCategory] = useState<number | null>(null);
   const navigate = useNavigate();
 
-  const { data: memberInfo } = useQuery({
-    queryKey: ['memberInfo'],
-    queryFn: () => axiosClient.get('/challenges').then((res) => res.data),
+  const { data: challengesInfo } = useQuery({
+    queryKey: ['challengesInfo'],
+    queryFn: () =>
+      axiosClient.get<ChallengeListType>('/challenges').then((res) => res.data),
   });
+  console.log(challengesInfo?.data);
 
-  console.log(memberInfo);
   const categories = [
     { id: 1, title: '모든 고민' },
     { id: 2, title: '학업' },

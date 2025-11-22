@@ -64,4 +64,18 @@
       ),
       #ffffff;
   }
+
+  .animate-worry-gradient {
+    background-size: 200% 200%;
+    animation: worry-gradient-move 2.2s ease-in-out infinite alternate;
+  }
+
+  @keyframes worry-gradient-move {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: 100% 100%;
+    }
+  }
 }

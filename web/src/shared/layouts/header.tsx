@@ -9,13 +9,14 @@ const Header = () => {
 
   const isLogin = matchPath(ROUTES.LOGIN, pathname) !== null;
   const isSignUp = matchPath(ROUTES.SIGNUP, pathname) !== null;
+  const isMain = matchPath(ROUTES.MAIN, pathname) !== null;
 
   if (isLogin || isSignUp) {
     return null;
   }
 
   return (
-    <header className="header-layout bg-gray-white text-gray-900">
+    <header className={isMain ? 'main-header-layout' : 'header-layout'}>
       {getHeaderContent(pathname, urlParams, navigate)}
     </header>
   );

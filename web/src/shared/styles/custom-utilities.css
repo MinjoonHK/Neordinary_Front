@@ -50,6 +50,10 @@
   }
 
   .header-layout {
-    @apply sticky top-0 z-[var(--z-header)] h-[5.6rem] py-[1.55rem] pl-[2rem];
+    @apply sticky top-0 z-[var(--z-header)] py-[1.55rem] pl-[2rem];
+  }
+
+  .main-header-layout {
+    @apply fixed top-0 z-[var(--z-header)] w-full py-[1.55rem] pl-[2rem];
   }
 }

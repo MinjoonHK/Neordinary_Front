@@ -21,20 +21,18 @@ export const getHeaderContent = (
 
   if (isMain) {
     return (
-      <div className="flex h-[6.4rem] items-center px-[2.4rem]">
-        <div className="flex flex-1 items-center">
-          <span className="h2" style={{ color: '#2773E9' }}>
-            서비스명
-          </span>
+      <div className="flex-row-between px-[2.4rem] py-[1.3rem]">
+        <div className="flex-row-center">
+          <span className="h2 text-blue-60">서비스명</span>
         </div>
 
         <div className="flex w-[2.8rem] justify-end">
           <button
             type="button"
             aria-label="메뉴 열기"
-            className="flex h-[2.8rem] w-[2.8rem] cursor-pointer items-center justify-center"
+            className="flex h-[2.8rem] w-[2.8rem] cursor-pointer"
           >
-            <img src={menuIcon} alt="메뉴" className="h-[1.4rem] w-[2.1rem]" />
+            <img src={menuIcon} alt="메뉴" className="h-[2.8rem] w-[2.8rem]" />
           </button>
         </div>
       </div>

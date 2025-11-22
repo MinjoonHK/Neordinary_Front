@@ -47,7 +47,7 @@ export const getHeaderContent = (
             type="button"
             onClick={handleBack}
             aria-label="뒤로가기"
-            className="flex h-[2.8rem] w-[2.8rem]"
+            className="flex h-[2.8rem] w-[2.8rem] cursor-pointer"
           >
             <img
               src={leftIcon}

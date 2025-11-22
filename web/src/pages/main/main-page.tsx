@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import mainMenu from '@/assets/main-menu.svg';
 import Button from '@/shared/components/button/button';
@@ -6,6 +7,7 @@ import { cn } from '@/shared/libs/cn';
 
 const Main = () => {
   const [activeCategory, setActiveCategory] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   const categories = [
     { id: 1, title: '모든 고민' },
@@ -49,6 +51,7 @@ const Main = () => {
           <Button
             title="무해한 위로/챌린지 받기"
             className="bg-blue-80 text-[2.0rem] text-white"
+            onClick={() => navigate('/worry')}
           />
         </div>
       </div>

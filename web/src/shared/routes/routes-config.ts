@@ -4,4 +4,5 @@ export const ROUTES = {
   LOGIN: '/login',
   SIGNUP: '/signup',
   CARD_DETAIL: (id = ':matchId') => `/card/${id}`,
+  WORRY: '/worry',
 };

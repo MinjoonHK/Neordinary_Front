@@ -3,6 +3,15 @@
 @import './reset.css';
 @import './custom-utilities.css';
 
+@font-face {
+  font-family: 'GangwonEducationSaeum';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     --min-width: 360px;

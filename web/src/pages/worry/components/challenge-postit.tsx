@@ -5,11 +5,10 @@ type ChallengePostitProps = {
 
 const ChallengePostit = ({ title, body }: ChallengePostitProps) => {
   return (
-    // 👉 여기부터가 포스트잇 전체
-    <div className="relative mx-auto h-[26rem] w-full max-w-[26rem] overflow-hidden rounded-[16px]">
-      {/* 포스트잇 종이(벡터) */}
+    <div className="relative mx-auto w-full max-w-[26rem] overflow-hidden rounded-[16px] pb-[2rem]">
       <div
-        className="absolute rounded-[16px]"
+        aria-hidden
+        className="absolute"
         style={{
           left: '2.14%',
           right: '4%',
@@ -22,7 +21,7 @@ const ChallengePostit = ({ title, body }: ChallengePostitProps) => {
         }}
       />
 
-      <div className="absolute top-[0.6rem] left-1/2 z-10 -translate-x-1/2">
+      <div className="absolute -top-[2rem] left-1/2 z-10 h-[2rem] -translate-x-1/2">
         <div
           className="absolute top-0 left-1/2 h-[3.8rem] w-[7.0rem] -translate-x-1/2 rounded-[6px]"
           style={{
@@ -33,12 +32,14 @@ const ChallengePostit = ({ title, body }: ChallengePostitProps) => {
         />
       </div>
 
-      <div className="relative z-10 flex h-full flex-col items-center px-[2.4rem] pt-[4.2rem] pb-[2.4rem]">
-        <p className="b3 font-gangwon text-gray-70">챌린지</p>
-        <p className="font-gangwon mt-[0.8rem] text-[2.4rem] leading-[3.0rem] text-gray-900">
+      <div className="relative z-10 flex w-full flex-col items-center px-[2.4rem] pt-[4.2rem] pb-[2.4rem]">
+        <p className="font-gangwon text-gray-70 text-[2.4rem] font-medium">
+          챌린지
+        </p>
+        <p className="font-gangwon pt-[1.6rem] text-[4rem] leading-[48px] font-normal tracking-tight text-gray-900">
           {title}
         </p>
-        <p className="b3 font-gangwon mt-[1.6rem] text-center whitespace-pre-line text-gray-900">
+        <p className="font-gangwon pt-[2.7rem] text-center text-[2rem] leading-[120%] font-medium whitespace-pre-line text-gray-900">
           {body}
         </p>
       </div>

@@ -41,18 +41,18 @@ export const getHeaderContent = (
 
   if (isCardDetail) {
     return (
-      <div className="flex h-[6.4rem] items-center px-[2.4rem]">
+      <div className="flex-row-between px-[2.4rem] py-[1.3rem]">
         <div className="flex w-[2.8rem] justify-start">
           <button
             type="button"
             onClick={handleBack}
             aria-label="뒤로가기"
-            className="flex h-[2.8rem] w-[2.8rem] items-center justify-center"
+            className="flex h-[2.8rem] w-[2.8rem]"
           >
             <img
               src={leftIcon}
               alt="뒤로가기"
-              className="h-[1.4rem] w-[0.7rem]"
+              className="h-[2.8rem] w-[2.8rem]"
             />
           </button>
         </div>

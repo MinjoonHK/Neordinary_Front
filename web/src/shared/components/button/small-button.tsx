@@ -9,10 +9,13 @@ type SmallButtonProps = Omit<
   title: string;
 };
 
-const SmallButton = ({ className = '', title }: SmallButtonProps) => {
+const SmallButton = ({
+  className = 'bg-gray-10 text-black',
+  title,
+}: SmallButtonProps) => {
   const baseClass =
     'flex-row-center cursor-pointer ' +
-    'px-[1.2rem] py-[1.6rem] w-full rounded-[16px] ' +
+    'px-[1.6rem] py-[1.2rem] rounded-[16px] ' +
     'disabled:cursor-default';
 
   return (

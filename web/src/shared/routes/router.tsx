@@ -1,7 +1,9 @@
+import { ROUTES } from '@routes/routes-config';
 import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
 const Layout = lazy(() => import('@layouts/layout'));
+const CardDetailPage = lazy(() => import('@pages/card/card-datail'));
 const LoginPage = lazy(() => import('@pages/login/login-page'));
 const MainPage = lazy(() => import('@pages/main/main-page'));
 
@@ -11,12 +13,16 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <MainPage /> },
       {
-        path: '/login',
+        path: ROUTES.LOGIN,
         element: <LoginPage />,
       },
       {
-        path: '/',
+        path: ROUTES.MAIN,
         element: <MainPage />,
+      },
+      {
+        path: ROUTES.CARD_DETAIL(),
+        element: <CardDetailPage />,
       },
     ],
   },

@@ -6,6 +6,9 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  server: {
+    host: '0.0.0.0',
+  },
   resolve: {
     alias: {
       '@pages': path.resolve(__dirname, 'src/pages'),

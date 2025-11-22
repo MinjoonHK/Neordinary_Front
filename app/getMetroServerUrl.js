@@ -1,3 +1,5 @@
+getMetroServerUrl;
+
 import Constants from "expo-constants";
 
 export function getMetroServerUrl() {
@@ -5,8 +7,8 @@ export function getMetroServerUrl() {
   const originalDebuggerHost = manifest?.hostUri;
 
   const webviewDebuggerUri = originalDebuggerHost
-    ? "http://" + originalDebuggerHost?.replace(/:\d+$/, ":5173/")
-    : "http://127.0.0.1:5173/";
+    ? "http://" + originalDebuggerHost.replace(/:\d+$/, ":5173/")
+    : "개인ip주소 추가";
 
   return webviewDebuggerUri;
 }

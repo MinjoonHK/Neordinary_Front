@@ -54,6 +54,6 @@
   }
 
   .main-header-layout {
-    @apply fixed top-0 z-[var(--z-header)] w-full;
+    @apply fixed top-0 z-[var(--z-header)] w-full max-w-[43rem];
   }
 }

@@ -2,7 +2,7 @@ import Button from '@components/button/button';
 
 const Main = () => {
   return (
-    <div className="text-gray-90 flex-col-center h-[100vh] bg-black px-[2.4rem] pt-[5rem]">
+    <div className="text-gray-90 flex-col-center px-[2.4rem] pt-[5rem]">
       <div className="mt-[3.2rem] flex w-full flex-col gap-[1.6rem]">
         <Button title="고민 상담하기" className="bg-blue-80 text-white" />
 

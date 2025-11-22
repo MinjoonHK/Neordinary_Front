@@ -8,10 +8,9 @@ const Header = () => {
   const urlParams = new URLSearchParams(search);
 
   const isLogin = matchPath(ROUTES.LOGIN, pathname) !== null;
-  const isSignUp = matchPath(ROUTES.SIGNUP, pathname) !== null;
   const isMain = matchPath(ROUTES.MAIN, pathname) !== null;
 
-  if (isLogin || isSignUp) {
+  if (isLogin) {
     return null;
   }
 

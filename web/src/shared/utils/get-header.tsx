@@ -10,8 +10,9 @@ export const getHeaderContent = (
 ) => {
   const isMain = matchPath(ROUTES.MAIN, pathname) !== null;
   const isCardDetail = matchPath(ROUTES.CARD_DETAIL(), pathname) !== null;
+  const isSignUp = matchPath(ROUTES.SIGNUP, pathname) !== null;
 
-  if (!isMain && !isCardDetail) {
+  if (!isMain && !isCardDetail && !isSignUp) {
     return null;
   }
 
@@ -39,7 +40,9 @@ export const getHeaderContent = (
     );
   }
 
-  if (isCardDetail) {
+  if (isSignUp || isCardDetail) {
+    const title = isSignUp ? '회원가입' : '기능 이름';
+
     return (
       <div className="flex-row-between px-[2.4rem] py-[1.3rem]">
         <div className="flex w-[2.8rem] justify-start">
@@ -58,9 +61,7 @@ export const getHeaderContent = (
         </div>
 
         <div className="flex flex-1 justify-center">
-          <span className="h2" style={{ color: '#000000' }}>
-            기능 이름
-          </span>
+          <span className="h2 text-black">{title}</span>
         </div>
 
         <div className="flex w-[2.8rem] justify-end" />

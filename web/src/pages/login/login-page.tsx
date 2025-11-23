@@ -28,11 +28,11 @@ const Login = () => {
 
   return (
     <div>
-      <div className="mt-[16.5rem] text-center text-[5rem]">{`{서비스 명}`}</div>
-      <div className="mt-[6rem] px-[2.4rem] text-center text-[2.4rem]">
-        서비스 설명서비스 설명서비스 설명서비스 설명서비스 설명
+      <div className="font-juache mt-[16.5rem] text-center text-[5rem]">
+        소소로
       </div>
-      <div className="mt-[41.8rem] p-[2rem]">
+
+      <div className="mt-[20.8rem] p-[2rem]">
         <div className="flex justify-center">
           <img src={KakaoBubbleIcon} alt="Image not found" />
         </div>

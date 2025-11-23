@@ -16,7 +16,7 @@ export const getHeaderContent = (
     return null;
   }
 
-  const title = isSignUp ? '회원가입' : isWorry ? '고민 털어놓기' : '기능 이름';
+  const title = isSignUp ? '회원가입' : isWorry ? '고민 털어놓기' : '챌린지';
 
   return (
     <div className="flex-row-between px-[2.4rem] py-[1.3rem]">

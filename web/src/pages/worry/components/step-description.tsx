@@ -60,7 +60,7 @@ const StepDescription = ({
       <div className="text-gray-90 flex-col gap-[0.8rem]">
         <h1 className="h3">어떤 고민을 가지고 있는지 알려주세요!</h1>
         <p className="b2">
-          [서비스명]이 위로와 함께
+          소소로가 위로와 함께
           <br />
           이를 극복할 재밌는 챌린지를 제안할게요
         </p>

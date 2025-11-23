@@ -39,10 +39,6 @@ export const router = createBrowserRouter([
         path: ROUTES.CARD_DETAIL(),
         element: <CardDetailPage />,
       },
-      {
-        path: ROUTES.CARD_DETAIL(),
-        element: <CardDetailPage />,
-      },
     ],
   },
 ]);

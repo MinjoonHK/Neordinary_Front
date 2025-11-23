@@ -19,7 +19,7 @@ const ENUM_TO_LABEL: Record<string, string> = {
   ETC: '기타',
 };
 
-const getCategoryLabel = (code?: string | 1) => {
+const getCategoryLabel = (code?: string | null) => {
   if (!code) return '전체';
   return ENUM_TO_LABEL[code] ?? '기타';
 };
@@ -65,6 +65,24 @@ const Main = () => {
   const nickname = challengesInfo?.data?.nickname ?? '닉네임';
   const cardItems = challengesInfo?.data?.challenges ?? [];
 
+  const goToCardDetail = (item: {
+    id: number | string;
+    title: string;
+    category: string;
+    imageUrl: string | null;
+    createdAt: string | null;
+  }) => {
+    navigate(`/card/${item.id}`, {
+      state: {
+        id: item.id,
+        title: item.title,
+        category: item.category,
+        imageUrl: item.imageUrl,
+        createdAt: item.createdAt,
+      },
+    });
+  };
+
   console.log(challengesInfo?.data);
 
   return (
@@ -72,7 +90,7 @@ const Main = () => {
       <div className="h-[30rem] w-full bg-[linear-gradient(180deg,#001536_0%,#00317E_100%)]">
         <div className="flex justify-between px-[2.4rem] py-[1.3rem] pb-[3.4rem]">
           <div>
-            <div className="h2 text-blue-60">서비스 명</div>
+            <div className="text-blue-60 font-juache text-[3rem]">소소로</div>
           </div>
         </div>
 
@@ -121,7 +139,16 @@ const Main = () => {
             {cardItems.map((item) => (
               <div
                 key={item.id}
-                className="border-gray-10 h-[24rem] w-[19rem] rounded-[1.6rem] border-[1px] bg-white p-[1.6rem] text-[1.6rem]"
+                onClick={() =>
+                  goToCardDetail({
+                    id: item.id,
+                    title: item.title,
+                    category: item.category,
+                    imageUrl: item.imageUrl,
+                    createdAt: item.createdAt,
+                  })
+                }
+                className="border-gray-10 h-[24rem] w-[19rem] cursor-pointer rounded-[1.6rem] border-[1px] bg-white p-[1.6rem] text-[1.6rem]"
               >
                 <div className="flex-col-between h-full">
                   <div className="text-blue-60 w-full text-left">

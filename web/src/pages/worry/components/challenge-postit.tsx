@@ -36,7 +36,7 @@ const ChallengePostit = ({ title, body }: ChallengePostitProps) => {
 
       <div className="relative z-10 flex w-full flex-col items-center rounded-[16px] px-[2.4rem] pt-[4.2rem] pb-[2.4rem]">
         <p className="font-gangwon text-gray-70 text-[2.4rem] font-medium">
-          챌린지
+          {/* {ai} */}
         </p>
         <p className="font-gangwon pt-[1.6rem] text-[4rem] leading-[48px] font-normal tracking-tight text-gray-900">
           {title}

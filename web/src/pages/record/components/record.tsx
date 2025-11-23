@@ -34,7 +34,7 @@ const Record = ({ value = '' }: RecordProps) => {
   return (
     <section className="w-full flex-col gap-[1.6rem]">
       <p className="b2 text-gray-90 gap-[0.8rem]">
-        {challengeCardDetailData?.nickname}님이
+        {challengeCardDetailData?.nickName}님이
         <br />
         {userSharedDate}에 알려주신 고민이에요
       </p>

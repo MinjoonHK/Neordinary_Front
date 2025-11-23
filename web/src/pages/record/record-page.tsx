@@ -9,8 +9,8 @@ import { axiosClient } from '@/shared/apis/axios-client';
 
 const RecordPage = () => {
   const location = useLocation();
-  const state = location.state as { value?: string } | undefined;
-  const value = state?.value ?? '';
+  // const state = location.state as { value?: string } | undefined;
+  // const value = state?.value ?? '';
   const navigate = useNavigate();
   const { pathname, search } = useLocation();
   const urlParams = new URLSearchParams(search);
@@ -19,7 +19,7 @@ const RecordPage = () => {
   };
 
   const { data: challengeCardDetailData } = useQuery({
-    queryKey: ['challengeCardDetailData', value],
+    queryKey: ['challengeCardDetailData'],
     queryFn: () =>
       axiosClient.get('/challenges/21/issue').then((res) => res.data),
     select: (data) => data.data,
@@ -36,13 +36,13 @@ const RecordPage = () => {
 
         <section className="w-full flex-col gap-[1.6rem]">
           <p className="b2 text-gray-90">
-            {challengeCardDetailData?.nickname}님을 위한
+            사용자님을 위한
             <br />
             위로와 극복 챌린지예요
           </p>
 
           <div className="flex w-full justify-center pt-[0.8rem]">
-            <div className="border-blue-20 flex w-full rounded-[16px] border bg-white px-[2.5rem] py-[2.8rem]">
+            <div className="border-blue-20 flex min-h-[20rem] w-full rounded-[16px] border bg-white px-[2.5rem] py-[2.8rem]">
               <div className="flex w-full flex-col gap-[2.4rem]">
                 <p className="b3 text-gray-80 whitespace-pre-line">
                   {challengeCardDetailData?.comfortContent}
@@ -50,7 +50,7 @@ const RecordPage = () => {
 
                 <ChallengePostit
                   title={challengeCardDetailData?.challengeTitle}
-                  body={challengeCardDetailData?.challengeContent}
+                  body={challengeCardDetailData?.challengeBody}
                 />
               </div>
             </div>

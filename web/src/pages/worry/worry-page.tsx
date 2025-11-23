@@ -11,36 +11,40 @@ import { axiosClient } from '@/shared/apis/axios-client';
 import { PROFANITY_LIST } from '@/shared/constants/badwords';
 import { ROUTES } from '@/shared/routes/routes-config';
 import { getHeaderContent } from '@/shared/utils/get-header';
+import { useMutation } from '@tanstack/react-query';
 
 type FunnelStep = 'CATEGORY' | 'DESCRIPTION' | 'LOADING' | 'RESULT';
 
 type AiResult = {
+  nickName: string;
   title: string;
   message: string;
   challengeTitle: string;
   challengeBody: string;
 };
 
+// API 요청 함수 (훅 사용 금지)
 const requestAiResult = async (params: {
   category: string | null;
   description: string;
 }): Promise<AiResult> => {
-  const { description } = params;
-  const { data: aiData } = await axiosClient.post('/issues', {
+  const res = await axiosClient.post('/issues/create', {
     category: params.category,
     content: params.description,
   });
 
+  const data = res.data.data;
+
   return {
-    title: '[Name]님을 위한\n위로와 극복 챌린지예요',
-    message: description,
-    challengeTitle: '와작와작 과자먹기',
-    challengeBody:
-      '나만을 위한 작은 보상 타임이에요.\n오늘 하루 수고한 나에게 과자를 선물해 보세요.',
+    nickName: data.nickName,
+    title: data.title,
+    message: params.description,
+    challengeTitle: data.challengeTitle,
+    challengeBody: data.comfortContent,
   };
 };
 
-const MIN_LOADING_DURATION = 2000;
+const MIN_LOADING_DURATION = 1500;
 
 const WorryFunnelPage = () => {
   const [step, setStep] = useState<FunnelStep>('CATEGORY');
@@ -56,7 +60,6 @@ const WorryFunnelPage = () => {
   const maxLength = 400;
   const minLength = 10;
 
-  const length = description.length;
   const containsProfanity = PROFANITY_LIST.some((bad) =>
     description.includes(bad),
   );
@@ -64,8 +67,26 @@ const WorryFunnelPage = () => {
   const canNext =
     step === 'CATEGORY'
       ? category !== null
-      : length >= minLength && length <= maxLength && !containsProfanity;
+      : description.length >= minLength &&
+        description.length <= maxLength &&
+        !containsProfanity;
 
+  // useMutation
+  const aiMutation = useMutation({
+    mutationFn: (params: { category: string | null; description: string }) =>
+      requestAiResult(params),
+
+    onSuccess: (data) => {
+      setAiResult(data);
+      setStep('RESULT');
+    },
+
+    onError: () => {
+      setStep('DESCRIPTION');
+    },
+  });
+
+  // 다음 버튼 처리
   const handleNext = async () => {
     if (!canNext) return;
 
@@ -77,39 +98,20 @@ const WorryFunnelPage = () => {
     if (step === 'DESCRIPTION') {
       setStep('LOADING');
 
-      try {
-        const [result] = await Promise.all([
-          requestAiResult({ category, description }),
-          new Promise<void>((resolve) =>
-            setTimeout(resolve, MIN_LOADING_DURATION),
-          ),
-        ]);
-
-        setAiResult(result);
-        setStep('RESULT');
-      } catch (e) {
-        console.error(e);
-        setStep('DESCRIPTION');
-      }
+      await Promise.all([
+        aiMutation.mutateAsync({ category, description }),
+        new Promise((r) => setTimeout(r, MIN_LOADING_DURATION)),
+      ]);
     }
   };
 
-  const handleGoMain = () => {
-    navigate(ROUTES.MAIN);
-  };
-
-  const handleBack = () => {
-    setShowExitModal(true);
-  };
-
+  const handleGoMain = () => navigate(ROUTES.MAIN);
+  const handleBack = () => setShowExitModal(true);
   const handleExitConfirm = () => {
     setShowExitModal(false);
     navigate(ROUTES.MAIN);
   };
-
-  const handleExitCancel = () => {
-    setShowExitModal(false);
-  };
+  const handleExitCancel = () => setShowExitModal(false);
 
   const isLoading = step === 'LOADING';
 
@@ -146,7 +148,7 @@ const WorryFunnelPage = () => {
         {step === 'LOADING' && (
           <div className="flex h-full w-full flex-col gap-[2.4rem] pt-[7.4rem]">
             <p className="b1 whitespace-pre-line">
-              {'[Name]님을 위한\n위로와 챌린지를 생각중이에요'}
+              {`사용자님을 위한\n위로와 챌린지를 생각중이에요`}
             </p>
           </div>
         )}

@@ -14,14 +14,14 @@ type StepCategoryProps = {
 };
 
 const CATEGORY_ITEMS = [
-  { label: '학업', icon: pencilIcon },
-  { label: '직장', icon: companyIcon },
-  { label: '가족', icon: familyIcon },
-  { label: '진로', icon: dreamIcon },
-  { label: '건강', icon: healthIcon },
-  { label: '관계', icon: relationIcon },
-  { label: '경제', icon: moneyIcon },
-  { label: '기타', icon: etcIcon },
+  { label: '학업', icon: pencilIcon, value: 'STUDY' },
+  { label: '직장', icon: companyIcon, value: 'JOB' },
+  { label: '가족', icon: familyIcon, value: 'FAMILY' },
+  { label: '진로', icon: dreamIcon, value: 'CAREER' },
+  { label: '건강', icon: healthIcon, value: 'HEALTH' },
+  { label: '관계', icon: relationIcon, value: 'RELATION' },
+  { label: '경제', icon: moneyIcon, value: 'FINANCE' },
+  { label: '기타', icon: etcIcon, value: 'ETC' },
 ] as const;
 
 const StepCategory = ({
@@ -32,20 +32,20 @@ const StepCategory = ({
   return (
     <section className="w-full flex-col gap-[3.2rem]">
       <h1 className="h3">
-        {name}이 가지고 계신 고민의
+        사용자님이 가지고 계신 고민의
         <br />
         카테고리를 선택해주세요!
       </h1>
 
       <div className="grid w-full grid-cols-3 gap-[1.0rem]">
-        {CATEGORY_ITEMS.map(({ label, icon }) => {
-          const isActive = selectedCategory === label;
+        {CATEGORY_ITEMS.map(({ label, icon, value }) => {
+          const isActive = selectedCategory === value;
 
           return (
             <button
-              key={label}
+              key={value}
               type="button"
-              onClick={() => onSelectCategory(label)}
+              onClick={() => onSelectCategory(value)}
               className={
                 'flex-col-center b1 gap-[1rem] rounded-[8px] border px-[1.6rem] pt-[1.6rem] pb-[1rem] text-black ' +
                 (isActive
